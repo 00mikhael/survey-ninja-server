@@ -7,28 +7,21 @@ const denyAccess = (req, res, next) => {
 const checkCreateDetails = async (req, res, next) => {
     if (!req.body.designation) {
         res.status(400).send({
-            message: 'Incomplete data'
+            message: 'Bad Request'
         })
         return
     }
 
     if (!req.body.score) {
         res.status(400).send({
-            message: 'Incomplete data'
+            message: 'Bad Request'
         })
         return
     }
 
-    if (!req.body.rank) {
+    if (!req.body.surveyResponses) {
         res.status(400).send({
-            message: 'Incomplete data'
-        })
-        return
-    }
-
-    if (!req.body.ninjaResponses) {
-        res.status(400).send({
-            message: 'Incomplete data'
+            message: 'Bad Request'
         })
         return
     }
@@ -37,7 +30,7 @@ const checkCreateDetails = async (req, res, next) => {
 }
 
 const checkNinjaResponseExist = async (req, res, next) => {
-    await req.db.Response.findOne({
+    await req.db.ResponseItem.findOne({
         designation: req.body.designation
     }).exec(async (err, response) => {
         if (err) {
@@ -48,8 +41,8 @@ const checkNinjaResponseExist = async (req, res, next) => {
         }
 
         if (response) {
-            res.status(400).send({
-                message: 'Ninja response exits'
+            res.status(409).send({
+                message: 'Ninja survey response exits'
             })
             return
         }
@@ -60,7 +53,7 @@ const checkNinjaResponseExist = async (req, res, next) => {
 const checkGetDetails = async (req, res, next) => {
     if (!req.params.designation) {
         res.status(400).send({
-            message: 'Incomplete data'
+            message: 'Bad Request'
         })
         return
     }

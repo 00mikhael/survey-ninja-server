@@ -4,6 +4,6 @@ mongoose.Promise = global.Promise
 const db = {}
 
 db.mongoose = mongoose
-db.Response = require('./response.model')
+db.ResponseItem = require('./response.model')
 
 module.exports = db

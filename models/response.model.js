@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const mongoosePaginate = require('mongoose-paginate-v2')
 
 module.exports = (() => {
-    const ninjaResponse = mongoose.Schema({
+    const surveyResponse = mongoose.Schema({
         question: {
             type: String,
             trim: true,
@@ -31,19 +31,14 @@ module.exports = (() => {
                 type: Number,
                 required: true
             },
-            rank: {
-                type: String,
-                trim: true,
-                required: true
-            },
-            ninjaResponses: [ninjaResponse]
+            surveyResponses: [surveyResponse]
         },
         { timestamps: true }
     )
 
     responseSchema.plugin(mongoosePaginate)
 
-    const Response = mongoose.model('Response', responseSchema)
+    const ResponseItem = mongoose.model('ResponseItem', responseSchema)
 
-    return Response
+    return ResponseItem
 })()

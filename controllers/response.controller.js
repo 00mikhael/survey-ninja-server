@@ -8,11 +8,10 @@ const getPagination = (page, size) => {
 }
 
 exports.saveOne = async (req, res) => {
-    const response = new req.db.Response({
+    const response = new req.db.ResponseItem({
         designation: req.body.designation,
         score: req.body.score,
-        rank: req.body.rank,
-        ninjaResponses: req.body.ninjaResponses
+        surveyResponses: req.body.surveyResponses
     })
 
     await response
@@ -32,7 +31,7 @@ exports.retrieveAll = async (req, res) => {
     const { page, size } = req.query
     const { limit, offset } = getPagination(page, size)
 
-    await req.db.Response.paginate(
+    await req.db.ResponseItem.paginate(
         {},
         {
             offset,
@@ -58,7 +57,7 @@ exports.retrieveAll = async (req, res) => {
 exports.findOne = async (req, res) => {
     const { designation } = req.params
 
-    await req.db.Response.findOne({
+    await req.db.ResponseItem.findOne({
         designation
     })
         .then(data => {

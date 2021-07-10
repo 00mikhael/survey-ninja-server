@@ -7,9 +7,7 @@ const { connectToDatabase } = require('./config/db.config')
 const appUrl = process.env.APP_URL
 const app = express()
 
-const {
-    responseRouter,
-} = require('./routes')
+const { responseRouter } = require('./routes')
 
 const db = async _ => {
     await connectToDatabase()
@@ -26,9 +24,9 @@ app.use(logger(`${app.get('env') === 'production' ? 'combined' : 'dev'}`))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use('/api/responses', responseRouter)
+app.use('/api/responseList', responseRouter)
 app.get(['/', '/api'], (req, res) => {
-    res.redirect('/api/responses')
+    res.redirect('/api/responseList')
 })
 
 app.use((req, res, next) => {
