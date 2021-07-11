@@ -58,7 +58,7 @@ exports.findOne = async (req, res) => {
     const { designation } = req.params
 
     await req.db.ResponseItem.findOne({
-        designation
+        designation: designation
     })
         .then(data => {
             if (!data) {
