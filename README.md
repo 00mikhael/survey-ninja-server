@@ -1,5 +1,9 @@
 # survey-ninja-server
 
+Swagger docs: https://app.swaggerhub.com/apis/mikhaelnwankwo/survey-ninja-api/1.0.0?loggedInWithGitHub=true
+
+Frontend: https://github.com/00mikhael/survey-ninja
+
 ## Run Locally
 
 Clone the project
