@@ -35,7 +35,8 @@ exports.retrieveAll = async (req, res) => {
         {},
         {
             offset,
-            limit
+            limit,
+            sort: { createdAt: -1 }
         }
     )
         .then(data => {
