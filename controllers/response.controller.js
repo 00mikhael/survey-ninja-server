@@ -30,13 +30,12 @@ exports.saveOne = async (req, res) => {
 exports.retrieveAll = async (req, res) => {
     const { page, size } = req.query
     const { limit, offset } = getPagination(page, size)
-
+// sort: { createdAt: -1 }
     await req.db.ResponseItem.paginate(
         {},
         {
             offset,
-            limit,
-            sort: { createdAt: -1 }
+            limit
         }
     )
         .then(data => {
